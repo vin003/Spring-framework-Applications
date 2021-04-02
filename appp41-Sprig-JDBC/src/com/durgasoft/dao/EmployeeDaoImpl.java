@@ -24,10 +24,13 @@ private JdbcTemplate jdbcTemplate ;
 		try {
 			
 	List<Employee> empList=jdbcTemplate.query("select * from employee", new EmployeeRowMapper());
+	
 	if (empList.isEmpty() == true)
+	
 	{
+		
 		int rowCount = jdbcTemplate.update("insert into employee values("+ emp.getEno()+",'" + emp.getEname()+"',"+emp.getEsal() +",'"+emp.getEaddr()+"')");
-		if (rowCount ==1)//means cursor position has been change to 1 
+		if (rowCount == 1) //means cursor position has been change to 1 
 		{
 			status ="Employee Inserted  Succesfully" ; 
 		}
@@ -35,7 +38,9 @@ private JdbcTemplate jdbcTemplate ;
 		{
 			status = "Employee insertion Failure ";
 		}
-	}else{
+	}
+		
+	else {
 		status ="Employee  Existed Already" ; 
 	}
 					
@@ -111,12 +116,12 @@ private JdbcTemplate jdbcTemplate ;
 		
 		try {
 			
-			Employee emp2 =search(emp.getEno()) ;
+		/*	Employee emp2 =search(emp.getEno()) ;
 			if (emp2==null)
 			{
 				status="Employee do not exist.." ; 
 			}
-			else {
+		*/	
 			int rowCount  = jdbcTemplate.update("update employee SET  ENAME='"+emp.getEname()+"',"+"ESAL="+emp.getEsal()+",EADDR='"+ emp.getEaddr()+"'WHERE ENO="+emp.getEno() ) ; 
 			if ( rowCount==1)
 			{
@@ -126,7 +131,7 @@ private JdbcTemplate jdbcTemplate ;
 				status ="Employee Updation Failure" ; 
 			}
 
-			}
+			
 			
 			}catch (Exception e) {
 			e.printStackTrace(); 
