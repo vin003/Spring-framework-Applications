@@ -43,7 +43,8 @@ public class StudentDaoImpl implements StudentDao {
 			} ) ; 
 			
 			if (stdList.isEmpty() == true)
-			{   paramMap  = new HashMap<String,Object>() ;
+			{  
+				paramMap  = new HashMap<String,Object>() ;
 			
 				paramMap.put("sid", std.getSid());
 				paramMap.put("sname", std.getSname());
@@ -51,6 +52,7 @@ public class StudentDaoImpl implements StudentDao {
 				
 				query = "insert into student values(:sid,:sname,:saddr)";
 				int rowCount = namedParameterJdbcTemplate.update(query, paramMap);
+				
 				if(rowCount ==1)
 				{
 					status ="Student Added Successfully" ; 
